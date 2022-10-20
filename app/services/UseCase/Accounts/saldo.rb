@@ -1,8 +1,8 @@
 module UseCase
-  module Account
-    class Saques
+  module Accounts
+    class Saldo
       def self.run()
-
+        
       end
     end
   end

@@ -1,6 +1,6 @@
 module UseCase
-  module Bank
-    class CreateBank
+  module Accounts
+    class Depositar
       def self.run()
 
       end

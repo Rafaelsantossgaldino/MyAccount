@@ -1,8 +1,8 @@
 module UseCase
-  module Account
-    class Extrato
+  module Accounts
+    class Saques
       def self.run()
-        
+
       end
     end
   end
