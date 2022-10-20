@@ -1,11 +1,11 @@
 module Api
   module V1
-    module Bank
-      class ProcessBankController < ApplicationController
+    module Accounts
+      class ProcessAccountController < ApplicationController
         include Authenticable
         before_action :authenticate_with_token
-        
-        def registre_bank()
+
+        def registre_account()
           
         end
       end
