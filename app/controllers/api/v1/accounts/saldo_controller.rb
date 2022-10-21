@@ -1,15 +1,14 @@
 module Api
   module V1
-    module Banks
-      class ModifyController < ApplicationController
+    module Accounts
+      class SaldoController < ApplicationController
         include Authenticable
-
         before_action :authenticate_with_token
         before_action :set_customer
 
-        def modify_bank
+        def saldo_account
           return render nothing: true, status: :not_found if not @customer_id
-          result = UseCase::Banks::ModifyName.run(@customer_id, params[:new_name_bank])
+          result = UseCase::Accounts::Saldo.run(@customer_id)
           if result
             render json: result, status: :ok
           else
