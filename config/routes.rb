@@ -3,17 +3,25 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       namespace :accounts, default: { format: :json } do
-        resources :process_account, only: :none do
+        resources :deposit, only: :none do
           collection do
-            post :registre_account
+            post :deposit_account
           end
         end
       end
 
-      namespace :banks, default: { format: :json } do
-        resources :modify, only: :none do
+      namespace :accounts, default: { format: :json } do
+        resources :saldo, only: :none do
           collection do
-            post :modify_bank
+            get :saldo_account
+          end
+        end
+      end
+
+      namespace :accounts, default: { format: :json } do
+        resources :saques, only: :none do
+          collection do
+            post :saque_account
           end
         end
       end
