@@ -4,7 +4,7 @@ module Api
       class QueryController < ApplicationController
         include Authenticable
         before_action :authenticate_with_token
-        before_action :set_customer, :create_bank
+        before_action :set_customer, :create_accounts
 
         def query_customer
           return render nothing: true, status: :not_found if not @customer_id
@@ -22,10 +22,9 @@ module Api
           @customer_id = params[:customer_id]
         end
 
-        def create_bank
+        def create_accounts
           customer = Customer.find(@customer_id)
-          customer.build_bank(name: nil) if not customer.bank
-          customer.bank.save
+          customer.accounts.create({name_bank: "Nubak", agency: "1000", num_account: "369258", balance: 50}) if customer.accounts.empty?
         end
       end
     end
