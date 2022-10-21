@@ -1,4 +1,4 @@
 class Account < ApplicationRecord
-  belongs_to :bank
-  validates :agency, :num_account, :name, presence: true
+  belongs_to :customer
+  validates :agency, :num_account, :name_bank, presence: true
 end
