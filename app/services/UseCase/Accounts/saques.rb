@@ -4,17 +4,16 @@ module UseCase
       def self.run(customer_id, name_bank, agency, num_account, new_balance_value)
         return nil if not Customer.exists?(customer_id)
         customer = Customer.find(customer_id)
-        balance = customer.accounts
-        get_value = customer.accounts.map(&:balance).last
+        balance = customer.accounts.where(agency: agency)
+        get_value = customer.accounts.where(agency: agency).map(&:balance).last
         soma = get_value - new_balance_value
-        if (soma) >= 0
+        if soma
           balance.update({balance: soma})
           customer.transactions.create(kind: :remover, qtd_balance: new_balance_value)
           balance.reload
           return {
             customer: customer.name,
-            account: customer.accounts.map(&:name_bank).last,
-            balance: customer.accounts.map(&:balance).last
+            account: customer.accounts.where(agency: agency).map(&:balance).last
           }
         else
          return false
