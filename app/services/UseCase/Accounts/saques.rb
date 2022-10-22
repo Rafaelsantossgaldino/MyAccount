@@ -9,6 +9,7 @@ module UseCase
         soma = get_value - new_balance_value
         if (soma) >= 0
           balance.update({balance: soma})
+          customer.transactions.create(kind: :remover, qtd_balance: new_balance_value)
           balance.reload
           return {
             customer: customer.name,
