@@ -6,7 +6,7 @@ module UseCase
         customer = Customer.find(customer_id)
         return {
           name: customer.name,
-          bank: customer.accounts
+          accounts: customer.accounts
         }
       end
     end
