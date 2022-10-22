@@ -8,7 +8,7 @@ module Api
 
         def saque_account
           return render nothing: true, status: :not_found if not @customer_id
-          result = UseCase::Accounts::Saques.run(@customer_id, @name_bank, @agency, @num_account, params[:new_balance_value])
+          result = UseCase::Accounts::Saques.run(@customer_id, @name_bank, @agency, @num_account, params[:new_balance_value].to_i)
           if result
             render json: result, status: :ok
           else
