@@ -5,7 +5,7 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
       t.string :name_bank
       t.string :agency
       t.string :num_account
-      t.integer :balance, default: 0
+      t.integer :balance
 
       t.timestamps
     end
