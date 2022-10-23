@@ -1,14 +1,17 @@
 module UseCase
   module Accounts
     class Deposit
-      def self.run(customer_id, new_value_name, new_value_agency, new_value_num_account, new_value_balance)
+      def self.run(customer_id, name_bank, agency, num_account, new_balance_value)
         return nil if not Customer.exists?(customer_id)
         customer = Customer.find(customer_id)
-        if customer.accounts.update({name_bank: new_value_name, agency: new_value_agency, num_account: new_value_num_account, balance: new_value_balance})
-          customer.accounts.reload
+        get_value = customer.accounts.where(agency: agency).map(&:balance).last
+        if customer.accounts.where(name_bank: name_bank).update({balance: get_value + new_balance_value })
+          customer.transactions.create(kind: :creditar, qtd_balance: new_balance_value)
+          customer.reload
           return {
             customer: customer.name,
-            accounts: customer.accounts
+            name_bank: customer.accounts.where(name_bank: name_bank).map(&:name_bank).last,
+            balance: customer.accounts.where(agency: agency).map(&:balance).last
           }
         else
           return false
