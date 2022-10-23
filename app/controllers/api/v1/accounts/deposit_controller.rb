@@ -8,7 +8,7 @@ module Api
 
         def deposit_account
           return render nothing: true, status: :not_found if not @customer_id
-          result = UseCase::Accounts::Deposit.run(@customer_id, params[:new_value_name], params[:new_value_agency], params[:new_value_num_account], params[:new_value_balance])
+          result = UseCase::Accounts::Deposit.run(@customer_id, @name_bank, @agency, @num_account, params[:new_balance_value].to_i)
           if result
             render json: result, status: :ok
           else
@@ -20,6 +20,9 @@ module Api
 
         def set_customer
           @customer_id = params[:customer_id]
+          @name_bank = params[:name_bank]
+          @agency = params[:agency]
+          @num_account = params[:num_account]
         end
       end
     end
