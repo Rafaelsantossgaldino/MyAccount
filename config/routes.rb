@@ -42,6 +42,14 @@ Rails.application.routes.draw do
         end
       end
 
+      namespace :accounts, default: { format: :json } do
+        resources :transferencia, only: :none do
+          collection do
+            post :tranference_account
+          end
+        end
+      end
+
       namespace :customers, default: { format: :json } do
         resources :query, only: :none do
           collection do
