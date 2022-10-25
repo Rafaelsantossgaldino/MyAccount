@@ -5,7 +5,7 @@ module UseCase
         return nil if not Customer.exists?(customer_id)
         customer = Customer.find(customer_id)
         get_value = customer.accounts.where(agency: agency).map(&:balance).last
-        if customer.accounts.where(name_bank: name_bank).update({balance: get_value + new_balance_value })
+        if customer.accounts.where(name_bank: name_bank).update({balance: get_value + new_balance_value})
           customer.transactions.create(kind: :creditar, qtd_balance: new_balance_value)
           customer.reload
           return {
