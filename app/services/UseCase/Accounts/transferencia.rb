@@ -17,6 +17,7 @@ module UseCase
           begin
             source_account.update!({ balance: source_balance })
             destination_account.update!({ balance: destination_balance })
+            customer.transactions.create(kind: :transferencia, qtd_balance: amount)
           rescue
             return { success: false, message: "Não foi possivel realizar transferencia!" }
           end
