@@ -8,11 +8,11 @@ module Api
 
         def tranference_account
           return render nothing: true, status: :not_found if not @customer_id
-          result = UseCase::Accounts::Transferencia.run(@customer_id, @name_bank, @agency, @num_account, @type, @new_balance_value)
-          if result
-            render json: result, status: :ok
+          result = UseCase::Accounts::Transferencia.run(@customer_id, @source_account_id, @destination_account_id, @amount)
+          if result[:success]
+            render json: { message: result[:message] }, status: :ok
           else
-            render nothing: true, status: :bad_request
+            render json: { message: result[:message] }, status: :bad_request
           end
         end
 
@@ -20,11 +20,9 @@ module Api
 
         def set_customer
           @customer_id = params[:customer_id]
-          @name_bank = params[:name_bank]
-          @agency = params[:agency]
-          @num_account = params[:num_account]
-          @type = params[:type]
-          @new_balance_value = params[:new_balance_value]
+          @source_account_id = params[:source_account_id]
+          @destination_account_id = params[:destination_account_id]
+          @amount = params[:amount]
         end
       end
     end
