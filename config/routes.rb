@@ -57,6 +57,12 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      namespace :twilio_sms, default: { format: :json } do
+        resources :send_sms, only: :none do
+          post :submit_sms
+        end
+      end
     end
   end
 end
