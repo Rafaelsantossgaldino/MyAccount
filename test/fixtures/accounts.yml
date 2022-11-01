@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bank: one
+  name: MyString
+  agency: MyString
+  num_account: MyString
+  balance: 1
+
+two:
+  bank: two
+  name: MyString
+  agency: MyString
+  num_account: MyString
+  balance: 1

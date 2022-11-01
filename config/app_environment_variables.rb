@@ -1,0 +1,5 @@
+ENV["API_TOKEN"] = "FVliAQGUWqwUe3FwmydF2SIiJ8QslHpO2MZY5S"
+
+ENV["TWILIO_BASE_URL"] = "http://0.0.0.0:3001/api/v1/twilio_sms/send-sms"
+ENV["TWILLIO_AUTH_TOKEN"] = '4f287674f8669dab1cde70304f04b525'
+ENV["TWILLIO_ACCOUNT_SID"] = 'ACf68c5ced98d0b3c967ced3f0bf9ce2fe'
